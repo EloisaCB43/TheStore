@@ -1,6 +1,6 @@
 import { ThemeProvider } from "@mui/system";
-import Header from "./components/header/header";
-import Theme from "./components/header/theme";
+import Header from "./components/Navbar/NavBar";
+import Theme from "./components/theme";
 
 const App = () => {
   return (
