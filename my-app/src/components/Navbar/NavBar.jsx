@@ -8,7 +8,7 @@ import {
   UserIcon,
 } from "./Components";
 
-const Header = (props) => {
+const Header = () => {
   const categories = [
     { navName: "About Us", href: "/about" },
     { navName: "Products", href: "/products" },

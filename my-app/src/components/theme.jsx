@@ -12,8 +12,14 @@ const Theme = createTheme({
   palette: {
     primaryText: {
       family: "Abyssinica SIL",
-      contrastText: '"#100b0e"',
+      contrastText: "#100b0e",
       size: "30px",
+    },
+  },
+  anchor: {
+    anchors: {
+      outline: "none",
+      decoration: "none",
     },
   },
   icon: {

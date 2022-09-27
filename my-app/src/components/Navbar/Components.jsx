@@ -31,7 +31,7 @@ const HeaderContainer = styled("header")(({ theme }) => ({
   width: "100%",
   height: "100px",
   [theme.breakpoints.up("tablet")]: {
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
   },
 }));
 
@@ -44,7 +44,6 @@ const Title = (props) => {
     width: "50%",
     [theme.breakpoints.up("tablet")]: {
       textAlign: "start",
-      marginLeft: "20px",
     },
   }));
   return <StyledTitle>{props.text}</StyledTitle>;
@@ -54,25 +53,37 @@ const Title = (props) => {
 
 const Navbar = (props) => {
   const StyledNav = styled("nav")(({ theme }) => ({
-    color: theme.palette.primaryText.contrastText,
-    fontFamily: theme.palette.primaryText.family,
-    fontSize: theme.palette.primaryText.size,
+    fontSize: "17px",
+  }));
+  const StyleUl = styled("ul")(({ theme }) => ({
+    listStyle: "none",
+    display: "flex",
+    flexWrap: "wrap",
   }));
   return (
     <StyledNav>
-      <ul>{props.children}</ul>
+      <StyleUl>{props.children}</StyleUl>
     </StyledNav>
   );
 };
 
 const NavAnchor = (props) => {
+  const StyleList = styled("li")(({ theme }) => ({
+    marginRight: "20px",
+  }));
+  const StyleAnchor = styled("a")(({ theme }) => ({
+    textDecoration: theme.anchor.anchors.decoration,
+    color: theme.palette.primaryText.contrastText,
+    fontFamily: theme.palette.primaryText.family,
+  }));
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("tablet"));
 
   return matches ? (
-    <li>
-      <a href={props.href}>{props.navName}</a>
-    </li>
+    <StyleList>
+      <StyleAnchor href={props.href}>{props.navName}</StyleAnchor>
+    </StyleList>
   ) : null;
 };
 
