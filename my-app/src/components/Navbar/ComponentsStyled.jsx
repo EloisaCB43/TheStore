@@ -1,7 +1,6 @@
 import { styled, useTheme, alpha } from "@mui/system";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
 /* Icons */
 const BurgerMenu = styled(MenuOutlinedIcon)(({ theme }) => ({
@@ -10,21 +9,6 @@ const BurgerMenu = styled(MenuOutlinedIcon)(({ theme }) => ({
     display: "none",
   },
 }));
-
-const UserIcon = () => {
-  const User = styled(PersonOutlineOutlinedIcon)(({ theme }) => ({
-    color: alpha(theme.icon.icons.color, 0.9),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.6),
-      borderRadius: "7px",
-    },
-  }));
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("tablet"));
-
-  return matches ? <User /> : null;
-};
-/*Icons*/
 
 const HeaderContainer = styled("header")(({ theme }) => ({
   display: "flex",
@@ -121,4 +105,4 @@ const NavAnchor = (props) => {
   ) : null;
 };
 
-export { HeaderContainer, Title, BurgerMenu, Navbar, UserIcon, NavAnchor };
+export { HeaderContainer, Title, BurgerMenu, Navbar, NavAnchor };

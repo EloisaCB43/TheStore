@@ -4,10 +4,10 @@ import {
   BurgerMenu,
   NavAnchor,
   Navbar,
-  UserIcon,
 } from "./ComponentsStyled";
 import SearchBar from "./SearchBar";
 import CartWidget from "./CartWidget";
+import UserIcon from "./UserWidget";
 
 const NavBar = () => {
   const categories = [
