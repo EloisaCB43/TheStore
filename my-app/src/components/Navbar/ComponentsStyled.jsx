@@ -53,7 +53,7 @@ const Title = (props) => {
     [theme.breakpoints.up("desktop")]: {
       fontSize: "35px",
       width: "15%",
-      marginLeft: "20px",
+      marginLeft: "80px",
     },
   }));
   return <StyledTitle>{props.text}</StyledTitle>;
@@ -75,8 +75,8 @@ const Navbar = (props) => {
       fontSize: "15px",
     },
     [theme.breakpoints.up("desktop")]: {
-      width: "55%",
-      marginLeft: "30px",
+      width: "49%",
+      marginLeft: "10px",
       fontSize: "16px",
     },
   }));

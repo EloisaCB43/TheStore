@@ -17,7 +17,8 @@ const SearchInput = (props) => {
       display: "none",
     },
     [theme.breakpoints.up("desktop")]: {
-      width: "18%",
+      width: "15%",
+      marginRight: "20px",
     },
   }));
 
