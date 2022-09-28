@@ -14,6 +14,7 @@ const Theme = createTheme({
     primaryText: {
       family: "Arvo,Roboto Serif",
       contrastText: grey[900],
+      contrastTextHover: grey[800],
       backgroundColor: deepOrange[50],
       backgroundInput: "#FFFFFF",
       size: "30px",

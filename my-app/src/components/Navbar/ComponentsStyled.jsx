@@ -1,4 +1,4 @@
-import { styled, useTheme } from "@mui/system";
+import { styled, useTheme, alpha } from "@mui/system";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -13,7 +13,11 @@ const BurgerMenu = styled(MenuOutlinedIcon)(({ theme }) => ({
 
 const UserIcon = () => {
   const User = styled(PersonOutlineOutlinedIcon)(({ theme }) => ({
-    color: theme.icon.icons.color,
+    color: alpha(theme.icon.icons.color, 0.9),
+    "&:hover": {
+      backgroundColor: alpha(theme.palette.common.white, 0.6),
+      borderRadius: "7px",
+    },
   }));
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("tablet"));
@@ -98,7 +102,12 @@ const NavAnchor = (props) => {
   }));
   const StyleAnchor = styled("a")(({ theme }) => ({
     textDecoration: theme.anchor.anchors.decoration,
-    color: theme.palette.primaryText.contrastText,
+    color: alpha(theme.palette.primaryText.contrastText, 0.9),
+    "&:hover": {
+      color: alpha(theme.palette.primaryText.contrastTextHover, 0.8),
+      textDecoration: "underline 1px black",
+      textUnderlineOffset: "8px",
+    },
     fontFamily: theme.palette.primaryText.family,
   }));
 

@@ -1,4 +1,3 @@
-import CartWidget from "./CartWidget";
 import {
   HeaderContainer,
   Title,
@@ -8,6 +7,7 @@ import {
   UserIcon,
 } from "./ComponentsStyled";
 import SearchBar from "./SearchBar";
+import CartWidget from "./CartWidget";
 
 const NavBar = () => {
   const categories = [
