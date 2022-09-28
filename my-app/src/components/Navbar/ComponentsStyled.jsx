@@ -27,7 +27,7 @@ const HeaderContainer = styled("header")(({ theme }) => ({
   flexWrap: "wrap",
   justifyContent: "space-around",
   alignItems: "center",
-  backgroundColor: "#F1c3b5",
+  backgroundColor: theme.palette.primaryText.backgroundColor,
   width: "100%",
   height: "100px",
   [theme.breakpoints.up("tablet")]: {
@@ -44,6 +44,16 @@ const Title = (props) => {
     width: "50%",
     [theme.breakpoints.up("tablet")]: {
       textAlign: "start",
+      width: "10%",
+      fontSize: "24px",
+    },
+    [theme.breakpoints.up("laptop")]: {
+      fontSize: "30px",
+    },
+    [theme.breakpoints.up("desktop")]: {
+      fontSize: "35px",
+      width: "15%",
+      marginLeft: "20px",
     },
   }));
   return <StyledTitle>{props.text}</StyledTitle>;
@@ -54,6 +64,21 @@ const Title = (props) => {
 const Navbar = (props) => {
   const StyledNav = styled("nav")(({ theme }) => ({
     fontSize: "17px",
+    [theme.breakpoints.up("tablet")]: {
+      width: "40%",
+      marginLeft: "40px",
+      fontSize: "14px",
+    },
+    [theme.breakpoints.up("laptop")]: {
+      width: "50%",
+      marginLeft: "40px",
+      fontSize: "15px",
+    },
+    [theme.breakpoints.up("desktop")]: {
+      width: "55%",
+      marginLeft: "30px",
+      fontSize: "16px",
+    },
   }));
   const StyleUl = styled("ul")(({ theme }) => ({
     listStyle: "none",

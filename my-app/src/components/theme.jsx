@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+import { grey, deepOrange } from "@mui/material/colors";
 
 const Theme = createTheme({
   breakpoints: {
@@ -11,8 +12,10 @@ const Theme = createTheme({
   },
   palette: {
     primaryText: {
-      family: "Abyssinica SIL",
-      contrastText: "#100b0e",
+      family: "Arvo,Roboto Serif",
+      contrastText: grey[900],
+      backgroundColor: deepOrange[50],
+      backgroundInput: "#FFFFFF",
       size: "30px",
     },
   },
@@ -24,7 +27,7 @@ const Theme = createTheme({
   },
   icon: {
     icons: {
-      color: "#100b0e",
+      color: grey[900],
     },
   },
 });

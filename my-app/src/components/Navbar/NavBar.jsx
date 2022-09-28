@@ -6,9 +6,10 @@ import {
   NavAnchor,
   Navbar,
   UserIcon,
-} from "./Components";
+} from "./ComponentsStyled";
+import SearchBar from "./SearchBar";
 
-const Header = () => {
+const NavBar = () => {
   const categories = [
     { navName: "About Us", href: "/about" },
     { navName: "Products", href: "/products" },
@@ -24,10 +25,11 @@ const Header = () => {
           <NavAnchor key={`navanchor_${i}`} {...category} />
         ))}
       </Navbar>
+      <SearchBar />
       <UserIcon />
       <CartWidget />
     </HeaderContainer>
   );
 };
 
-export default Header;
+export default NavBar;
