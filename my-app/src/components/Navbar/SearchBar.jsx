@@ -2,23 +2,6 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 
-// const SampleComponent = () => (
-//     <Box
-//       sx={(theme) => ({
-//         p: 1,
-//         [theme.breakpoints.down("sm")]: {
-//           p: 2,
-//         },
-//         [theme.breakpoints.down("md")]: {
-//           p: 2,
-//         },
-//         [theme.breakpoints.down("lg")]: {
-//           p: 2,
-//         }
-//       })}
-//     />
-//   );
-
 const SearchInput = (props) => {
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
