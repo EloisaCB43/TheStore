@@ -17,6 +17,7 @@ const Greeting = (props) => {
     alignItems: "center",
     height: "60px",
     boxShadow: "-1px 7px 8px -6px rgb(0 0 0 / 40%)",
+    fontSize: "15px",
     [theme.breakpoints.down("tablet")]: {
       display: "none",
     },
