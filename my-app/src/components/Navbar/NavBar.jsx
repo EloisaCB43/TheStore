@@ -7,7 +7,7 @@ import {
 } from "./ComponentsStyled";
 import SearchBar from "./SearchBar";
 import CartWidget from "./CartWidget";
-import UserIcon from "./UserWidget";
+import UserWidget from "./UserWidget";
 
 const NavBar = () => {
   const categories = [
@@ -26,7 +26,7 @@ const NavBar = () => {
         ))}
       </Navbar>
       <SearchBar />
-      <UserIcon />
+      <UserWidget />
       <CartWidget />
     </HeaderContainer>
   );

@@ -3,12 +3,13 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import { Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 
-const UserIcon = () => {
+const UserWidget = () => {
   const userCategories = [
     { name: "Profile" },
     { name: "My account" },
     { name: "Logout" },
   ];
+
   const User = styled(PersonOutlineOutlinedIcon)(({ theme }) => ({
     color: alpha(theme.icon.icons.color, 0.9),
     "&:hover": {
@@ -64,4 +65,4 @@ const UserIcon = () => {
   );
 };
 
-export default UserIcon;
+export default UserWidget;
