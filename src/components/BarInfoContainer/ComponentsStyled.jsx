@@ -1,16 +1,15 @@
 import { styled } from "@mui/system";
 import Icon from "@mui/material/Icon"; /* Here I used https://fonts.google.com/icons?icon.platform=android with this import*/
 
-const Greeting = (props) => {
-  const { greeting } = props;
-
+const InfoBar = () => {
   const categoriesContainer = [
-    { nameList: "Whole wine", iconName: "wine_bar" },
+    { nameList: "local Pizza & Burgers", iconName: "local_pizza" },
+    { nameList: "Explosion of flavors", iconName: "soup_kitchen" },
     { nameList: "Carefully sourced", iconName: "eco" },
     { nameList: "Free shipping over $25", iconName: "shopping_cart" },
   ];
 
-  const GreetingStyled = styled("section")(({ theme }) => ({
+  const InfoBarStyled = styled("section")(({ theme }) => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
@@ -40,20 +39,20 @@ const Greeting = (props) => {
     "&::before": {
       content: "'|'",
       marginRight: "30px",
+      marginLeft: "30px",
     },
   }));
 
   return (
-    <GreetingStyled>
-      {greeting}
+    <InfoBarStyled>
       {categoriesContainer.map((category, i) => (
-        <DivContainer>
-          <Icon key={`Icon_${i}`}>{category.iconName}</Icon>
-          <Message key={`Message_${i}`}>{category.nameList}</Message>
+        <DivContainer key={`DivContainer_${i}`}>
+          <Icon>{category.iconName}</Icon>
+          <Message>{category.nameList}</Message>
         </DivContainer>
       ))}
-    </GreetingStyled>
+    </InfoBarStyled>
   );
 };
 
-export default Greeting;
+export default InfoBar;
