@@ -1,9 +1,9 @@
 import * as React from "react";
 import MaterialCard from "@mui/material/Card";
-
 import CardContentStyle from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
 import TypographyFont from "@mui/material/Typography";
 import { styled } from "@mui/system";
 
@@ -27,13 +27,14 @@ const Typography = styled(TypographyFont)(({ theme }) => ({
     fontSize: "17px",
   },
   [theme.breakpoints.up("desktop")]: {
-    fontSize: "19px",
+    fontSize: "17px",
   },
 }));
 
 const Card = styled(MaterialCard)(({ theme }) => ({
   width: "90%",
   margin: "10px 0px 10px 0px",
+
   "&:hover": {
     boxShadow: theme.palette.primaryText.backgroundColorHover,
   },
@@ -66,7 +67,7 @@ const DivContainer = styled("div")(({ theme }) => ({
   },
 }));
 
-const ItemStyled = ({ products }) => {
+const Item = ({ products }) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -83,8 +84,11 @@ const ItemStyled = ({ products }) => {
           {`$${products.attributes.price}`}
         </Typography>
       </CardContent>
+      <CardActions>
+        <Button size="small">Learn More</Button>
+      </CardActions>
     </Card>
   );
 };
 
-export { ItemStyled, DivContainer };
+export { Item, DivContainer };

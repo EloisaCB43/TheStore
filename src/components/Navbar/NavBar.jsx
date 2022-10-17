@@ -12,14 +12,16 @@ import UserWidget from "./UserWidget";
 const NavBar = () => {
   const categories = [
     { navName: "About Us", href: "/about" },
-    { navName: "Products", href: "/products" },
-    { navName: "New", href: "/new" },
+    { navName: "Pizzas", href: "/category/pizzas" },
+    { navName: "Burgers", href: "/category/burgers" },
   ];
 
   return (
     <HeaderContainer>
       <BurgerMenu />
+
       <Title text="TheStore" />
+
       <Navbar>
         {categories.map((category, i) => (
           <NavAnchor key={`navanchor_${i}`} {...category} />

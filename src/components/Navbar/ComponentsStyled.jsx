@@ -1,6 +1,7 @@
 import { styled, useTheme, alpha } from "@mui/system";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import { Link, NavLink } from "react-router-dom";
 
 /* Icons */
 const BurgerMenu = styled(MenuOutlinedIcon)(({ theme }) => ({
@@ -24,12 +25,16 @@ const HeaderContainer = styled("header")(({ theme }) => ({
 }));
 
 const Title = (props) => {
+  const StyledLink = styled(Link)(() => ({
+    textDecoration: "none",
+  }));
   const StyledTitle = styled("h1")(({ theme }) => ({
     color: theme.palette.primaryText.contrastText,
     fontFamily: theme.palette.primaryText.family,
     fontSize: theme.palette.primaryText.size,
     textAlign: "center",
     width: "50%",
+    listStyle: "none",
     [theme.breakpoints.up("tablet")]: {
       textAlign: "start",
       width: "10%",
@@ -41,10 +46,14 @@ const Title = (props) => {
     [theme.breakpoints.up("desktop")]: {
       fontSize: "35px",
       width: "15%",
-      marginLeft: "80px",
+      marginLeft: "53px",
     },
   }));
-  return <StyledTitle>{props.text}</StyledTitle>;
+  return (
+    <StyledLink to="/">
+      <StyledTitle>{props.text}</StyledTitle>
+    </StyledLink>
+  );
 };
 
 /* Components for tablet */
@@ -84,7 +93,7 @@ const NavAnchor = (props) => {
   const StyleList = styled("li")(({ theme }) => ({
     marginRight: "20px",
   }));
-  const StyleAnchor = styled("a")(({ theme }) => ({
+  const StyleAnchor = styled(NavLink)(({ theme }) => ({
     textDecoration: theme.anchor.anchors.decoration,
     color: alpha(theme.palette.primaryText.contrastText, 0.9),
     "&:hover": {
@@ -100,7 +109,7 @@ const NavAnchor = (props) => {
 
   return matches ? (
     <StyleList>
-      <StyleAnchor href={props.href}>{props.navName}</StyleAnchor>
+      <StyleAnchor to={props.href}>{props.navName}</StyleAnchor>
     </StyleList>
   ) : null;
 };
