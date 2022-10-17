@@ -74,7 +74,6 @@ const Item = ({ products }) => {
         component="img"
         height="230px"
         image={products.attributes.img.data.attributes.formats.large.url}
-        alt={products.attributes.name}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
