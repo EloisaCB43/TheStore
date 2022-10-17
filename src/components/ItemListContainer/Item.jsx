@@ -6,6 +6,7 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import TypographyFont from "@mui/material/Typography";
 import { styled } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 const CardContent = styled(CardContentStyle)(({ theme }) => ({
   display: "flex",
@@ -68,6 +69,8 @@ const DivContainer = styled("div")(({ theme }) => ({
 }));
 
 const Item = ({ products }) => {
+  const navigate = useNavigate();
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -84,7 +87,13 @@ const Item = ({ products }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button
+          id="button"
+          size="small"
+          onClick={() => navigate(`/product/${products.id}`)}
+        >
+          Learn More
+        </Button>
       </CardActions>
     </Card>
   );

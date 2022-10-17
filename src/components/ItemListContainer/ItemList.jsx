@@ -1,7 +1,6 @@
 import { Item, DivContainer } from "./Item";
 
 const ItemList = ({ products }) => {
-  console.log(products);
   return (
     <DivContainer>
       {products.map((product) => (
