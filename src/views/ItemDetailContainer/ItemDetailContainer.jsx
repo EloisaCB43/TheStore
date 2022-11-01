@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
 import CircularIndeterminate from "../../Spinner";
 
-const ItemDeatilContainer = () => {
+const ItemDetailContainer = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,4 +30,4 @@ const ItemDeatilContainer = () => {
   );
 };
 
-export default ItemDeatilContainer;
+export default ItemDetailContainer;

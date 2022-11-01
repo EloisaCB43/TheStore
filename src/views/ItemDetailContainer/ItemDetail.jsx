@@ -1,6 +1,5 @@
 import ItemStyled from "./ItemStyled";
 const ItemDetail = ({ products }) => {
-  console.log(products);
   return (
     <div>
       {products.map((product) => (

@@ -1,5 +1,9 @@
 import { styled } from "@mui/system";
 import Image from "mui-image";
+import React, { useState, useContext } from "react";
+import ItemCount from "../../components/itemCount";
+import { Link } from "react-router-dom";
+import { Context } from "../../context/customContext";
 
 const DivContainer = styled("div")(({ theme }) => ({
   display: "flex",
@@ -30,21 +34,39 @@ const DetailPrice = styled("p")(({ theme }) => ({
 }));
 
 const ItemStyled = ({ products }) => {
-  return (
-    <DivContainer>
-      <ContainerImg>
-        <Image
-          alt={products.attributes.name}
-          src={products.attributes.img.data.attributes.formats.large.url}
-        />
-      </ContainerImg>
+  const [showItemCount, setShowItemCount] = useState(true);
+  const { addItem } = useContext(Context);
 
-      <DescripContainer>
-        <DetailTitle>{products.attributes.name}</DetailTitle>
-        <DetailDescription>{products.attributes.description}</DetailDescription>
-        <DetailPrice>{`$${products.attributes.price}`}</DetailPrice>
-      </DescripContainer>
-    </DivContainer>
+  const onAdd = (count) => {
+    addItem(products, count);
+    setShowItemCount(false);
+  };
+  return (
+    <>
+      <DivContainer>
+        <ContainerImg>
+          <Image
+            alt={products.attributes.name}
+            src={products.attributes.img.data.attributes.formats.large.url}
+          />
+        </ContainerImg>
+
+        <DescripContainer>
+          <DetailTitle>{products.attributes.name}</DetailTitle>
+          <DetailDescription>
+            {products.attributes.description}
+          </DetailDescription>
+          <DetailPrice>{`$${products.attributes.price}`}</DetailPrice>
+        </DescripContainer>
+      </DivContainer>
+      {showItemCount ? (
+        <ItemCount initial={1} stock={12} onAdd={onAdd} />
+      ) : (
+        <Link to={"/cart"}>
+          <button>Finalizar</button>
+        </Link>
+      )}
+    </>
   );
 };
 

@@ -1,8 +1,12 @@
+import React, { useContext } from "react";
 import { styled, alpha } from "@mui/system";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Link } from "react-router-dom";
+import { Context } from "../../context/customContext";
 
 const CartWidget = () => {
+  const { qty } = useContext(Context);
+
   const StyledLink = styled(Link)(() => ({
     textDecoration: "none",
   }));
@@ -18,9 +22,12 @@ const CartWidget = () => {
   }));
 
   return (
-    <StyledLink to="/cart">
-      <ShoppingCart />
-    </StyledLink>
+    <>
+      {qty > 0 && <p>{qty}</p>}
+      <StyledLink to="/cart">
+        <ShoppingCart />
+      </StyledLink>
+    </>
   );
 };
 

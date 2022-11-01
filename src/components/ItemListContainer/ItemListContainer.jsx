@@ -25,12 +25,7 @@ const ItemListContainer = () => {
       const products = await getCategoryProducts(idCategory, loadingCb);
       setProducts(products);
     };
-
-    if (idCategory) {
-      fetchCategories();
-    } else {
-      fetchProducts();
-    }
+    idCategory ? fetchCategories() : fetchProducts();
   }, [idCategory]);
 
   return loading ? <CircularIndeterminate /> : <ItemList products={products} />;
