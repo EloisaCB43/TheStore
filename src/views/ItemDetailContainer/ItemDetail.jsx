@@ -1,10 +1,8 @@
 import ItemStyled from "./ItemStyled";
-const ItemDetail = ({ products }) => {
+const ItemDetail = ({ product }) => {
   return (
     <div>
-      {products.map((product) => (
-        <ItemStyled key={product.id} products={product}></ItemStyled>
-      ))}
+      {product && <ItemStyled key={product.id} product={product}></ItemStyled>}
     </div>
   );
 };

@@ -1,71 +1,125 @@
 import { styled } from "@mui/system";
 import Image from "mui-image";
 import React, { useState, useContext } from "react";
-import ItemCount from "../../components/itemCount";
+import ItemCount from "./itemCount";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/customContext";
 
 const DivContainer = styled("div")(({ theme }) => ({
   display: "flex",
+  flexDirection: "column",
+  [theme.breakpoints.up("desktop")]: {
+    display: "flex",
+    marginTop: "25px",
+    flexDirection: "row",
+  },
 }));
 const ContainerImg = styled("div")(({ theme }) => ({
-  height: "230px",
-  width: "50%",
+  height: "auto",
+  width: "100%",
+  marginTop: "15px",
+  marginBottom: "10px",
+  [theme.breakpoints.up("tablet")]: {
+    height: "auto",
+  },
+  [theme.breakpoints.up("desktop")]: {
+    height: "315px",
+    width: "45%",
+    marginTop: "0px",
+  },
 }));
 
 const DescripContainer = styled("div")(({ theme }) => ({
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-between",
-  width: "70%",
+  width: "100%",
+  [theme.breakpoints.up("desktop")]: {
+    display: "flex",
+    flexDirection: "column",
+    marginLeft: "50px",
+    width: "70%",
+  },
 }));
 
 const DetailTitle = styled("h6")(({ theme }) => ({
   fontFamily: theme.palette.primaryText.family,
-  fontSize: "19px",
+  fontSize: "17px",
+  [theme.breakpoints.up("tablet")]: {
+    fontSize: "18px",
+  },
+  [theme.breakpoints.up("desktop")]: {
+    fontSize: "21px",
+  },
 }));
 const DetailDescription = styled("p")(({ theme }) => ({
   fontFamily: theme.palette.primaryText.family,
-  fontSize: "19px",
+  fontSize: "14px",
+  marginTop: "14px",
+  lineHeight: "22px",
+  [theme.breakpoints.up("tablet")]: {
+    fontSize: "16px",
+    margin: "14px 0px 11px 0px",
+    lineHeight: "25px",
+  },
+  [theme.breakpoints.up("desktop")]: {
+    fontSize: "18px",
+    marginTop: "30px",
+    lineHeight: "25px",
+  },
 }));
 const DetailPrice = styled("p")(({ theme }) => ({
   fontFamily: theme.palette.primaryText.family,
-  fontSize: "19px",
+  marginTop: "10px",
+  fontSize: "17px",
+  fontWeight: "bold",
+  position: "absolute",
+  [theme.breakpoints.up("desktop")]: {
+    fontSize: "21px",
+    marginTop: "18px",
+    position: "static",
+  },
 }));
 
-const ItemStyled = ({ products }) => {
+const ItemStyled = ({ product }) => {
   const [showItemCount, setShowItemCount] = useState(true);
-  const { addItem } = useContext(Context);
+  const { addItem, updateItem } = useContext(Context);
 
   const onAdd = (count) => {
-    addItem(products, count);
+    addItem(product, count);
     setShowItemCount(false);
+  };
+
+  const onUpdate = (count) => {
+    updateItem(product, count);
   };
   return (
     <>
       <DivContainer>
         <ContainerImg>
           <Image
-            alt={products.attributes.name}
-            src={products.attributes.img.data.attributes.formats.large.url}
+            alt={product.attributes.name}
+            src={product.attributes.img.data.attributes.formats.large.url}
           />
         </ContainerImg>
 
         <DescripContainer>
-          <DetailTitle>{products.attributes.name}</DetailTitle>
+          <DetailTitle>{product.attributes.name}</DetailTitle>
           <DetailDescription>
-            {products.attributes.description}
+            {product.attributes.description}
           </DetailDescription>
-          <DetailPrice>{`$${products.attributes.price}`}</DetailPrice>
+          <DetailPrice>{`$${product.attributes.price}`}</DetailPrice>
+          {showItemCount ? (
+            <ItemCount
+              initial={1}
+              stock={12}
+              onAdd={onAdd}
+              onUpdate={onUpdate}
+            />
+          ) : (
+            <Link to={"/cart"}>
+              <button>VIEW CART</button>
+            </Link>
+          )}
         </DescripContainer>
       </DivContainer>
-      {showItemCount ? (
-        <ItemCount initial={1} stock={12} onAdd={onAdd} />
-      ) : (
-        <Link to={"/cart"}>
-          <button>Finalizar</button>
-        </Link>
-      )}
     </>
   );
 };

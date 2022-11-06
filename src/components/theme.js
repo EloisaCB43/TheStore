@@ -12,7 +12,7 @@ const Theme = createTheme({
   },
   palette: {
     primaryText: {
-      family: "Arvo,Roboto Serif",
+      family: "Arvo",
       contrastText: grey[900],
       contrastTextHover: grey[800],
       backgroundColor: deepOrange[50],

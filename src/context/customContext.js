@@ -25,7 +25,6 @@ const CartProvider = ({ children }) => {
         return acc;
       }, 0)
     );
-    console.log("cartttt", cart);
   }, [cart]);
 
   const addItem = (item, quantity) => {
@@ -45,6 +44,16 @@ const CartProvider = ({ children }) => {
     setTotal(total + item.price * quantity);
   };
 
+  const updateItem = (item, quantity) => {
+    const addChangeOnQuantity = cart.map((products) => {
+      if (products.id === item.id) {
+        products.quantity = quantity;
+      }
+      return products;
+    });
+    setCart(addChangeOnQuantity);
+  };
+
   const isInCart = (id) => {
     return cart.some((item) => item.id === id);
   };
@@ -61,7 +70,16 @@ const CartProvider = ({ children }) => {
 
   return (
     <Provider
-      value={{ cart, addItem, qty, total, isInCart, clearCart, deleteItem }}
+      value={{
+        cart,
+        addItem,
+        updateItem,
+        qty,
+        total,
+        isInCart,
+        clearCart,
+        deleteItem,
+      }}
     >
       {children}
     </Provider>

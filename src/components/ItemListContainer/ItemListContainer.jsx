@@ -23,6 +23,7 @@ const ItemListContainer = () => {
     const fetchCategories = async () => {
       // because I am giving in apis two parametres, an idCategory and a finalcallback
       const products = await getCategoryProducts(idCategory, loadingCb);
+
       setProducts(products);
     };
     idCategory ? fetchCategories() : fetchProducts();
