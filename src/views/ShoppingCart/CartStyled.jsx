@@ -16,6 +16,7 @@ const MainContainer = styled("div")(({ theme }) => ({
 
 const ItemTotal = styled("div")(({ theme }) => ({
   width: "100%",
+
   [theme.breakpoints.up("laptop")]: {
     width: "60%",
   },
@@ -23,6 +24,7 @@ const ItemTotal = styled("div")(({ theme }) => ({
 
 const DivContainer = styled("div")(({ theme }) => ({
   display: "flex",
+  marginTop: "10px",
   borderTop: "black solid 0.5px",
   borderBottom: "black solid 0.5px",
   [theme.breakpoints.up("laptop")]: {
@@ -67,7 +69,6 @@ const ContainerImg = styled("div")(({ theme }) => ({
 const StyleInfo = styled("div")(({ theme }) => ({
   display: "flex",
   [theme.breakpoints.down("laptop")]: {
-    flex: 1,
     gap: "5px",
   },
   [theme.breakpoints.up("laptop")]: {
@@ -82,7 +83,6 @@ const StyleItemsCart = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   [theme.breakpoints.down("laptop")]: {
-    flex: 1,
     gap: "10px",
   },
   justifyContent: "space-between",
@@ -93,9 +93,6 @@ const StyleItemsCart = styled("div")(({ theme }) => ({
 }));
 
 const Title = styled("h3")(({ theme }) => ({
-  [theme.breakpoints.down("laptop")]: {
-    flex: 1,
-  },
   [theme.breakpoints.up("laptop")]: {
     fontSize: "20px",
   },
