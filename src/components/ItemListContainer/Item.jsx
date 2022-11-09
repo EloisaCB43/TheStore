@@ -73,17 +73,13 @@ const Item = ({ products }) => {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="230px"
-        image={products.attributes.img.data.attributes.formats.large.url}
-      />
+      <CardMedia component="img" height="230px" image={products.img} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {products.attributes.name}
+          {products.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {`$${products.attributes.price}`}
+          {`$${products.price}`}
         </Typography>
       </CardContent>
       <CardActions>

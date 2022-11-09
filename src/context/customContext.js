@@ -21,7 +21,7 @@ const CartProvider = ({ children }) => {
     );
     setTotal(
       cart.reduce((acc, product) => {
-        acc += product.attributes.price * product.quantity;
+        acc += product.price * product.quantity;
         return acc;
       }, 0)
     );

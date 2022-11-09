@@ -20,15 +20,13 @@ export default function BasicBreadcrumbs() {
           <Link
             underline="hover"
             color="inherit"
-            href={`/category/${product.attributes.category.data.attributes.name}`}
+            href={`/category/${product.category}`}
           >
-            {product.attributes.category.data.attributes.name}
+            {product.category}
           </Link>
         )}
         {product && window.location.pathname.includes("product") && (
-          <Typography color="text.primary">
-            {product.attributes.name}
-          </Typography>
+          <Typography color="text.primary">{product.name}</Typography>
         )}
       </Breadcrumbs>
     </div>

@@ -94,22 +94,17 @@ const ItemStyled = ({ product }) => {
     <>
       <DivContainer>
         <ContainerImg>
-          <Image
-            alt={product.attributes.name}
-            src={product.attributes.img.data.attributes.formats.large.url}
-          />
+          <Image alt={product.name} src={product.img} />
         </ContainerImg>
 
         <DescripContainer>
-          <DetailTitle>{product.attributes.name}</DetailTitle>
-          <DetailDescription>
-            {product.attributes.description}
-          </DetailDescription>
-          <DetailPrice>{`$${product.attributes.price}`}</DetailPrice>
+          <DetailTitle>{product.name}</DetailTitle>
+          <DetailDescription>{product.description}</DetailDescription>
+          <DetailPrice>{`$${product.price}`}</DetailPrice>
           {showItemCount ? (
             <ItemCount
-              initial={1}
-              stock={12}
+              initial={0}
+              stock={product.stock}
               onAdd={onAdd}
               onUpdate={onUpdate}
             />

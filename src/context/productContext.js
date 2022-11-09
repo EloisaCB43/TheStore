@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
-import getProduct from "../api/getProduct";
+import { getDoc, collection, doc } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 
 const Context = createContext();
 
@@ -13,12 +14,16 @@ const ProductProvider = ({ children }) => {
   const loadingCb = () => {
     setLoading(false);
   };
+
   useEffect(() => {
     if (productId) {
+      const oneProductCollection = collection(db, "products");
+      const refDoc = doc(oneProductCollection, productId);
+
       const fecthOneProduct = async () => {
-        // because I am giving in apis two parametres, an idCategory and a finalcallback
-        const products = await getProduct(productId, loadingCb);
-        setProducts(products);
+        const products = await getDoc(refDoc);
+        setProducts({ ...products.data(), id: products.id });
+        loadingCb();
       };
       fecthOneProduct();
     }

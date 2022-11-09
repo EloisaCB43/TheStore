@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import ItemList from "./ItemList";
 import CircularIndeterminate from "../../Spinner";
 import { useParams } from "react-router-dom";
-import getProducts from "../../api/getProducts";
-import getCategoryProducts from "../../api/getCategoryProducts";
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -16,17 +16,29 @@ const ItemListContainer = () => {
   };
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const products = await getProducts(loadingCb);
-      setProducts(products);
-    };
-    const fetchCategories = async () => {
-      // because I am giving in apis two parametres, an idCategory and a finalcallback
-      const products = await getCategoryProducts(idCategory, loadingCb);
+    const productCollection = collection(db, "products");
 
-      setProducts(products);
+    const getCategoryQuery = (category) =>
+      query(productCollection, where("category", "==", category));
+
+    const getData = async () => {
+      try {
+        const result = await getDocs(
+          idCategory ? getCategoryQuery(idCategory) : productCollection
+        );
+
+        const listProducts = result.docs.map((item, i) => {
+          return { ...item.data(), id: item.id };
+        });
+        setProducts(listProducts);
+        console.log(listProducts);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        loadingCb();
+      }
     };
-    idCategory ? fetchCategories() : fetchProducts();
+    getData();
   }, [idCategory]);
 
   return loading ? <CircularIndeterminate /> : <ItemList products={products} />;

@@ -109,16 +109,13 @@ const CartStyled = ({ product }) => {
       {addItem ? (
         <ItemContainer>
           <ContainerImg>
-            <Image
-              alt={product.attributes.name}
-              src={product.attributes.img.data.attributes.formats.large.url}
-            />
+            <Image alt={product.name} src={product.img} />
           </ContainerImg>
           <StyleItemsCart>
             <StyleInfo>
-              <Title>{product.attributes.name}</Title>
+              <Title>{product.name}</Title>
               <h5 style={{ fontWeight: "normal" }}>{`SKU: ${product.id}`}</h5>
-              <h4>{`$${product.attributes.price}`}</h4>
+              <h4>{`$${product.price}`}</h4>
               <ButtonRemove onClick={() => deleteItem(product.id)}>
                 Remove
               </ButtonRemove>
@@ -130,13 +127,9 @@ const CartStyled = ({ product }) => {
               isRight={false}
               onUpdate={onUpdate}
             />
-            <h4
-              style={{ fontWeight: "normal" }}
-            >{`$${product.attributes.price} =`}</h4>
+            <h4 style={{ fontWeight: "normal" }}>{`$${product.price} =`}</h4>
             <h4 style={{ fontWeight: "normal" }}>
-              {`$${Math.round(
-                product.attributes.price * product.quantity
-              ).toFixed(2)}`}
+              {`$${Math.round(product.price * product.quantity).toFixed(2)}`}
             </h4>
           </StyleItemsCart>
         </ItemContainer>
