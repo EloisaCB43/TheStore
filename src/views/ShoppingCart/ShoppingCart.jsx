@@ -58,18 +58,15 @@ const Cart = () => {
 
   const finalizeShopping = () => {
     const user = getValues();
-
     if (!cart.length) {
       alert("There's nothing in the cart.");
       return;
     }
-
     if (user.address && user.firstName && user.lastName && user.email) {
       sale();
       updateStock();
       return;
     }
-
     alert("Please enter your valid information");
   };
 
