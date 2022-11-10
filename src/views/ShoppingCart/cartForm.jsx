@@ -2,11 +2,19 @@ import React from "react";
 
 import { styled } from "@mui/system";
 
-const DivForm = styled("div")(({ theme }) => ({
-  width: "30%",
+const FormContainer = styled("form")(({ theme }) => ({
+  width: "80%",
+  margin: "25px 0px 0px 10px",
+}));
+const FormStyle = styled("div")(({ theme }) => ({
+  width: "35%",
 }));
 
-const DivLabel = styled("div")(({ theme }) => ({
+const TitleFinalize = styled("h2")(({ theme }) => ({
+  fontSize: "20px",
+  marginLeft: "10px",
+}));
+const Field = styled("div")(({ theme }) => ({
   fontFamily: theme.palette.primaryText.family,
   fontWeight: "bold",
   display: "flex",
@@ -34,38 +42,40 @@ const ButtonSubmit = styled("button")(({ theme }) => ({
   },
 }));
 
-const Form = ({ register, errors, onSubmit }) => {
+const Form = ({ register, errors, handleSubmit, onSubmit }) => {
   return (
-    <DivForm>
-      <DivLabel>
+    <FormContainer onSubmit={handleSubmit(onSubmit)}>
+      <Field>
         <label>First Name</label>
         <InputStyled {...register("firstName")} />
         {errors.firstName && <p>{errors.firstName.message}</p>}
-      </DivLabel>
+      </Field>
 
-      <DivLabel>
+      <Field>
         <label>Last Name</label>
         <InputStyled {...register("lastName")} />
         {errors.lastName && <p>{errors.lastName.message}</p>}
-      </DivLabel>
+      </Field>
 
-      <DivLabel>
+      <Field>
         <label>Address</label>
         <InputStyled {...register("address")} />
         {errors.address && <p>{errors.address.message}</p>}
-      </DivLabel>
+      </Field>
 
-      <DivLabel>
+      <Field>
         <label>Email</label>
-        <InputStyled {...register("email")} />
+        <InputStyled
+          {...register("email", {
+            pattern: /^[\w]+@([\w-])+[\w-]{2,4}$/,
+          })}
+        />
         {errors.email && <p>{errors.email.message}</p>}
-      </DivLabel>
+      </Field>
 
-      <ButtonSubmit type="submit" onClick={onSubmit}>
-        Finalize shopping
-      </ButtonSubmit>
-    </DivForm>
+      <ButtonSubmit type="submit">Finalize shopping</ButtonSubmit>
+    </FormContainer>
   );
 };
 
-export default Form;
+export { Form, TitleFinalize, FormStyle };

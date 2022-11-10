@@ -1,8 +1,9 @@
 import { CartStyled, MainContainer, ItemTotal } from "./CartStyled";
+import swal from "sweetalert";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Context } from "../../context/customContext";
 import { useContext } from "react";
-import Form from "./cartForm";
+import { Form, TitleFinalize, FormStyle } from "./cartForm";
 import { db } from "../../firebase/firebase";
 import {
   collection,
@@ -28,6 +29,8 @@ const Cart = () => {
     register,
     formState: { errors },
     getValues,
+    handleSubmit,
+    reset,
   } = useForm({
     resolver: yupResolver(SignupSchema),
   });
@@ -41,7 +44,7 @@ const Cart = () => {
       total: total,
       date: serverTimestamp(),
     });
-    console.log(result.id);
+    swal("Great!!", `Your order number is ${result.id}`, "success");
     clearCart();
   };
 
@@ -51,28 +54,37 @@ const Cart = () => {
         const update = doc(db, "products", item.id);
         return updateDoc(update, { stock: item.stock - item.quantity });
       }),
-    ]).then((values) => {
-      console.log("This is the info", values);
-    });
+    ]);
   };
 
   const finalizeShopping = () => {
     const user = getValues();
     if (!cart.length) {
-      alert("There's nothing in the cart.");
+      swal("Oops!", "There's nothing in the cart.");
+
       return;
     }
     if (user.address && user.firstName && user.lastName && user.email) {
       sale();
       updateStock();
+      reset();
+
       return;
     }
-    alert("Please enter your valid information");
+    swal("Oops!", "Please enter your valid information.");
   };
 
   return (
     <MainContainer>
-      <Form register={register} errors={errors} onSubmit={finalizeShopping} />
+      <FormStyle>
+        <TitleFinalize>Please enter your info to finalize</TitleFinalize>
+        <Form
+          register={register}
+          errors={errors}
+          onSubmit={finalizeShopping}
+          handleSubmit={handleSubmit}
+        />
+      </FormStyle>
       <ItemTotal>
         {cart.map((product) => (
           <CartStyled key={product.id} product={product}></CartStyled>
