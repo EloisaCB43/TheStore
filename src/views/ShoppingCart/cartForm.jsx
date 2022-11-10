@@ -1,7 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+
 import { styled } from "@mui/system";
 
 const DivForm = styled("div")(({ theme }) => ({
@@ -25,37 +23,20 @@ const InputStyled = styled("input")(({ theme }) => ({
 const ButtonSubmit = styled("button")(({ theme }) => ({
   fontFamily: theme.palette.primaryText.family,
   marginTop: "10px",
-  fontSize: "18px",
-  padding: "11px",
+  fontSize: "17px",
+  padding: "10px",
   color: "white",
   background: "black",
-  width: "55%",
+  width: "100%",
   "&:hover": {
     color: "black",
     background: "white",
   },
 }));
 
-const SignupSchema = yup.object().shape({
-  firstName: yup.string().required(),
-  age: yup.number().required().positive().integer(),
-  email: yup.string().email().required(),
-});
-
-const Form = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(SignupSchema),
-  });
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data));
-  };
-
+const Form = ({ register, errors, onSubmit }) => {
   return (
-    <DivForm onSubmit={handleSubmit(onSubmit)}>
+    <DivForm>
       <DivLabel>
         <label>First Name</label>
         <InputStyled {...register("firstName")} />
@@ -69,12 +50,9 @@ const Form = () => {
       </DivLabel>
 
       <DivLabel>
-        <label>Age</label>
-        <InputStyled
-          type="number"
-          {...register("age", { valueAsNumber: true })}
-        />
-        {errors.age && <p>{errors.age.message}</p>}
+        <label>Address</label>
+        <InputStyled {...register("address")} />
+        {errors.address && <p>{errors.address.message}</p>}
       </DivLabel>
 
       <DivLabel>
@@ -83,7 +61,9 @@ const Form = () => {
         {errors.email && <p>{errors.email.message}</p>}
       </DivLabel>
 
-      <ButtonSubmit type="submit">Submit</ButtonSubmit>
+      <ButtonSubmit type="submit" onClick={onSubmit}>
+        Finalize shopping
+      </ButtonSubmit>
     </DivForm>
   );
 };

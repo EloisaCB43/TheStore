@@ -31,7 +31,6 @@ const ItemListContainer = () => {
           return { ...item.data(), id: item.id };
         });
         setProducts(listProducts);
-        console.log(listProducts);
       } catch (err) {
         console.log(err);
       } finally {
