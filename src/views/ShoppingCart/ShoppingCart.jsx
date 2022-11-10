@@ -1,5 +1,5 @@
 import { CartStyled, MainContainer, ItemTotal } from "./CartStyled";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Context } from "../../context/customContext";
 import { useContext } from "react";
@@ -44,7 +44,20 @@ const Cart = () => {
       total: total,
       date: serverTimestamp(),
     });
-    swal("Great!!", `Your order number is ${result.id}`, "success");
+    Swal.fire({
+      icon: "success",
+      title: "Great! Thanks for choosing us.",
+      text: `Your order ID is: ${result.id}`,
+      showConfirmButton: true,
+      confirmButtonText: "Copy id to clipboard",
+    }).then((action) => {
+      if (action.isConfirmed) {
+        navigator.clipboard.writeText(result.id).then(() => {
+          console.log("copy");
+        });
+      }
+    });
+
     clearCart();
   };
 
@@ -60,7 +73,11 @@ const Cart = () => {
   const finalizeShopping = () => {
     const user = getValues();
     if (!cart.length) {
-      swal("Oops!", "There's nothing in the cart.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "There's nothing in the cart",
+      });
 
       return;
     }
@@ -71,7 +88,11 @@ const Cart = () => {
 
       return;
     }
-    swal("Oops!", "Please enter your valid information.");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please enter your valid information.",
+    });
   };
 
   return (
