@@ -5,6 +5,7 @@ import { useContext } from "react";
 import ItemCount from "../ItemDetailContainer/itemCount";
 
 const MainContainer = styled("div")(({ theme }) => ({
+  fontFamily: theme.palette.primaryText.family,
   display: "flex",
   flexDirection: "column-reverse",
   marginTop: "17px",
@@ -37,43 +38,52 @@ const ItemContainer = styled("div")(({ theme }) => ({
   width: "100%",
   display: "flex",
   justifyContent: "space-between",
+  padding: "5px",
   [theme.breakpoints.up("laptop")]: {
     padding: "10px",
   },
 }));
 const ButtonRemove = styled("button")(({ theme }) => ({
+  fontFamily: theme.palette.primaryText.family,
+  marginTop: "10px",
+  color: "white",
+  background: "black",
+  "&:hover": {
+    color: "black",
+    background: "white",
+  },
+  [theme.breakpoints.up("tablet")]: {
+    width: "fit-content",
+    fontSize: "12px",
+    padding: "4px",
+  },
   [theme.breakpoints.up("laptop")]: {
-    fontFamily: theme.palette.primaryText.family,
-    marginTop: "10px",
-    fontSize: "14px",
-    padding: "5px",
-    color: "white",
-    background: "black",
     width: "55%",
-    "&:hover": {
-      color: "black",
-      background: "white",
-    },
+    fontSize: "16px",
+    padding: "5px",
   },
 }));
 
 const ContainerImg = styled("div")(({ theme }) => ({
-  height: "50px",
+  height: "105px",
   width: "22%",
   minWidth: "160px",
+  [theme.breakpoints.up("tablet")]: {
+    width: "fit-content",
+    height: "90px",
+  },
   [theme.breakpoints.up("laptop")]: {
     height: "145px",
     width: "22%",
   },
 }));
 const StyleInfo = styled("div")(({ theme }) => ({
-  display: "flex",
-  [theme.breakpoints.down("laptop")]: {
-    gap: "5px",
-  },
-  [theme.breakpoints.up("laptop")]: {
+  [theme.breakpoints.up("tablet")]: {
+    display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+  },
+  [theme.breakpoints.up("laptop")]: {
     width: "35%",
     height: "100%",
     margin: "5px 0px 5px 0px",
@@ -82,10 +92,12 @@ const StyleInfo = styled("div")(({ theme }) => ({
 const StyleItemsCart = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  [theme.breakpoints.down("laptop")]: {
-    gap: "10px",
-  },
   justifyContent: "space-between",
+  marginLeft: "8px",
+  [theme.breakpoints.up("tablet")]: {
+    width: "73%",
+    marginRight: "10px",
+  },
   [theme.breakpoints.up("laptop")]: {
     width: "100%",
     justifyContent: "space-around",
@@ -93,6 +105,7 @@ const StyleItemsCart = styled("div")(({ theme }) => ({
 }));
 
 const Title = styled("h3")(({ theme }) => ({
+  fontSize: "16px",
   [theme.breakpoints.up("laptop")]: {
     fontSize: "20px",
   },
@@ -127,8 +140,10 @@ const CartStyled = ({ product }) => {
               isRight={false}
               onUpdate={onUpdate}
             />
-            <h4 style={{ fontWeight: "normal" }}>{`$${product.price} =`}</h4>
-            <h4 style={{ fontWeight: "normal" }}>
+            <h4
+              style={{ fontWeight: "normal", fontSize: "14px" }}
+            >{`$${product.price} =`}</h4>
+            <h4 style={{ fontWeight: "normal", fontSize: "14px" }}>
               {`$${Math.round(product.price * product.quantity).toFixed(2)}`}
             </h4>
           </StyleItemsCart>

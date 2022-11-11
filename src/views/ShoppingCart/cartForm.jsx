@@ -3,16 +3,35 @@ import React from "react";
 import { styled } from "@mui/system";
 
 const FormContainer = styled("form")(({ theme }) => ({
-  width: "80%",
-  margin: "25px 0px 0px 10px",
+  [theme.breakpoints.up("tablet")]: {
+    margin: "10px 0px 0px 10px",
+    width: "70%",
+  },
+  [theme.breakpoints.up("laptop")]: {
+    width: "80%",
+    margin: "25px 0px 0px 10px",
+  },
 }));
 const FormStyle = styled("div")(({ theme }) => ({
-  width: "35%",
+  width: "60%",
+  [theme.breakpoints.up("tablet")]: {
+    width: "75%",
+  },
+  [theme.breakpoints.up("laptop")]: {
+    width: "35%",
+  },
 }));
 
-const TitleFinalize = styled("h2")(({ theme }) => ({
-  fontSize: "20px",
-  marginLeft: "10px",
+const TitleFinalize = styled("h3")(({ theme }) => ({
+  fontFamily: theme.palette.primaryText.family,
+  margin: "14px 0px 10px 0px",
+  fontSize: "17PX",
+  [theme.breakpoints.up("tablet")]: {
+    marginLeft: "10px",
+  },
+  [theme.breakpoints.up("laptop")]: {
+    fontSize: "20px",
+  },
 }));
 const Field = styled("div")(({ theme }) => ({
   fontFamily: theme.palette.primaryText.family,

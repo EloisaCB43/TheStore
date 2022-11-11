@@ -8,21 +8,22 @@ import { Context } from "../../context/customContext";
 const DivContainer = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  [theme.breakpoints.up("desktop")]: {
+  [theme.breakpoints.up("laptop")]: {
     display: "flex",
     marginTop: "25px",
     flexDirection: "row",
   },
 }));
 const ContainerImg = styled("div")(({ theme }) => ({
-  height: "auto",
   width: "100%",
   marginTop: "15px",
   marginBottom: "10px",
+  alignSelf: "center",
+
   [theme.breakpoints.up("tablet")]: {
-    height: "auto",
+    width: "50%",
   },
-  [theme.breakpoints.up("desktop")]: {
+  [theme.breakpoints.up("laptop")]: {
     height: "315px",
     width: "45%",
     marginTop: "0px",
@@ -31,7 +32,7 @@ const ContainerImg = styled("div")(({ theme }) => ({
 
 const DescripContainer = styled("div")(({ theme }) => ({
   width: "100%",
-  [theme.breakpoints.up("desktop")]: {
+  [theme.breakpoints.up("laptop")]: {
     display: "flex",
     flexDirection: "column",
     marginLeft: "50px",
@@ -45,7 +46,7 @@ const DetailTitle = styled("h6")(({ theme }) => ({
   [theme.breakpoints.up("tablet")]: {
     fontSize: "18px",
   },
-  [theme.breakpoints.up("desktop")]: {
+  [theme.breakpoints.up("laptop")]: {
     fontSize: "21px",
   },
 }));
@@ -59,7 +60,7 @@ const DetailDescription = styled("p")(({ theme }) => ({
     margin: "14px 0px 11px 0px",
     lineHeight: "25px",
   },
-  [theme.breakpoints.up("desktop")]: {
+  [theme.breakpoints.up("laptop")]: {
     fontSize: "18px",
     marginTop: "30px",
     lineHeight: "25px",
@@ -71,10 +72,29 @@ const DetailPrice = styled("p")(({ theme }) => ({
   fontSize: "17px",
   fontWeight: "bold",
   position: "absolute",
-  [theme.breakpoints.up("desktop")]: {
+  [theme.breakpoints.up("laptop")]: {
     fontSize: "21px",
     marginTop: "18px",
     position: "static",
+  },
+}));
+
+const ViewCartButton = styled("button")(({ theme }) => ({
+  fontFamily: theme.palette.primaryText.family,
+  marginTop: "10px",
+  fontSize: "11px",
+  padding: "11px",
+  color: "white",
+  background: "black",
+  width: "100%",
+  [theme.breakpoints.up("laptop")]: {
+    marginTop: "25px",
+    fontSize: "14px",
+    padding: "19px",
+    "&:hover": {
+      color: "black",
+      background: "white",
+    },
   },
 }));
 
@@ -110,7 +130,7 @@ const ItemStyled = ({ product }) => {
             />
           ) : (
             <Link to={"/cart"}>
-              <button>VIEW CART</button>
+              <ViewCartButton>VIEW CART</ViewCartButton>
             </Link>
           )}
         </DescripContainer>

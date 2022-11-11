@@ -8,8 +8,12 @@ import {
 import SearchBar from "./SearchBar";
 import CartWidget from "./CartWidget";
 import UserWidget from "./UserWidget";
+import { Context } from "../../context/customContext";
+import { useContext } from "react";
 
 const NavBar = () => {
+  const { cart } = useContext(Context);
+
   const categories = [
     { navName: "About Us", href: "/about" },
     { navName: "Pizzas", href: "/category/pizzas" },
@@ -27,7 +31,7 @@ const NavBar = () => {
           <NavAnchor key={`navanchor_${i}`} {...category} />
         ))}
       </Navbar>
-      <SearchBar />
+      <SearchBar placeholder="Search your order Id" data={cart} />
       <UserWidget />
       <CartWidget />
     </HeaderContainer>

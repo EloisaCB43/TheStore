@@ -4,33 +4,37 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { styled } from "@mui/system";
 
-const DivStyleButton = styled("div")(({ theme, isCard, isRight }) => ({
+const DivStyleButton = styled("div")(({ theme, isCard }) => ({
   position: "relative",
-  right: isRight && "-57px",
+  right: !isCard && "-57px",
   display: "flex",
   alignItems: "center",
-  [theme.breakpoints.up("desktop")]: {
+  width: "fit-content",
+  [theme.breakpoints.up("tablet")]: {
+    right: !isCard && "-57px",
+  },
+  [theme.breakpoints.up("laptop")]: {
     marginTop: !isCard && "30px",
     position: "static",
   },
 }));
 
 const Count = styled("h3")(({ theme }) => ({
-  fontSize: "15px",
-  [theme.breakpoints.up("desktop")]: {
+  fontSize: "14px",
+  [theme.breakpoints.up("laptop")]: {
     fontSize: "18px",
   },
 }));
 
 const StyleAddButton = styled(AddCircleOutlineIcon)(({ theme }) => ({
-  fontSize: "23px",
-  [theme.breakpoints.up("desktop")]: {
+  fontSize: "20px",
+  [theme.breakpoints.up("laptop")]: {
     fontSize: "30px",
   },
 }));
 const StyleMinusButton = styled(RemoveCircleOutlineIcon)(({ theme }) => ({
-  fontSize: "23px",
-  [theme.breakpoints.up("desktop")]: {
+  fontSize: "20px",
+  [theme.breakpoints.up("laptop")]: {
     fontSize: "30px",
   },
 }));
@@ -43,7 +47,7 @@ const ButtonCart = styled("button")(({ theme }) => ({
   color: "white",
   background: "black",
   width: "100%",
-  [theme.breakpoints.up("desktop")]: {
+  [theme.breakpoints.up("laptop")]: {
     marginTop: "25px",
     fontSize: "14px",
     padding: "19px",
@@ -54,14 +58,7 @@ const ButtonCart = styled("button")(({ theme }) => ({
   },
 }));
 
-const ItemCount = ({
-  stock,
-  initial,
-  onAdd,
-  isCard = false,
-
-  onUpdate,
-}) => {
+const ItemCount = ({ stock, initial, onAdd, isCard = false, onUpdate }) => {
   const [count, setCount] = useState(initial);
 
   const minus = () => {

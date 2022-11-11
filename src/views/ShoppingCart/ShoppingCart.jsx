@@ -53,7 +53,7 @@ const Cart = () => {
     }).then((action) => {
       if (action.isConfirmed) {
         navigator.clipboard.writeText(result.id).then(() => {
-          console.log("copy");
+          console.log("Copied!", result.id);
         });
       }
     });
@@ -110,9 +110,9 @@ const Cart = () => {
         {cart.map((product) => (
           <CartStyled key={product.id} product={product}></CartStyled>
         ))}
-        <h3 style={{ marginTop: "10px" }}>{`Total: $${Math.round(total).toFixed(
-          3
-        )} `}</h3>
+        <h3
+          style={{ marginTop: "10px", fontSize: "14px" }}
+        >{`Total: $${Math.round(total).toFixed(3)} `}</h3>
         <DeleteIcon onClick={() => clearCart(cart)} />
       </ItemTotal>
     </MainContainer>

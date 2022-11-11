@@ -2,7 +2,6 @@ import * as React from "react";
 import MaterialCard from "@mui/material/Card";
 import CardContentStyle from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import TypographyFont from "@mui/material/Typography";
 import { styled } from "@mui/system";
@@ -35,7 +34,6 @@ const Typography = styled(TypographyFont)(({ theme }) => ({
 const Card = styled(MaterialCard)(({ theme }) => ({
   width: "90%",
   margin: "10px 0px 10px 0px",
-
   "&:hover": {
     boxShadow: theme.palette.primaryText.backgroundColorHover,
   },
@@ -82,15 +80,14 @@ const Item = ({ products }) => {
           {`$${products.price}`}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button
-          id="button"
-          size="small"
-          onClick={() => navigate(`/product/${products.id}`)}
-        >
-          Learn More
-        </Button>
-      </CardActions>
+      <Button
+        id="button"
+        size="small"
+        style={{ padding: "0", marginTop: "10px" }}
+        onClick={() => navigate(`/product/${products.id}`)}
+      >
+        Learn More
+      </Button>
     </Card>
   );
 };
